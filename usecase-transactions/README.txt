@@ -1,0 +1,1 @@
+curl -X POST -d '{ "full_name": "John Doe", "departure_city": "San Francisco", "destination_city": "Paris", "start_date": "2018-03-20T00:00:00.000Z", "end_date": "2018-03-30T00:00:00.000Z", "airline": "delta", "hotel": "hilton" }'  "http://localhost:9090/travel" -H "Content-Type:application/json"
