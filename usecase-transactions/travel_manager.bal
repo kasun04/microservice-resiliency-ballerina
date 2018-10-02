@@ -18,14 +18,15 @@ endpoint http:Listener initiatorEP {
     port:6060
 };
 
+endpoint http:Client participantHotelService {
+    url: "http://" + HOTEL_HOST + ":" + HOTEL_PORT
+};
 
 endpoint http:Client participantAirlineService {
     url: "http://" + AIRLINE_HOST + ":" + AIRLINE_PORT
 };
 
-endpoint http:Client participantHotelService {
-    url: "http://" + HOTEL_HOST + ":" + HOTEL_PORT
-};
+
 
 
 @http:ServiceConfig {

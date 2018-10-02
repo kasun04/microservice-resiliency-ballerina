@@ -18,7 +18,7 @@ endpoint http:Client legacyQuoteEP {
     retryConfig: {
         interval: 100, // Retry interval in milliseconds
         count: 5, // Number of retry attempts before giving up
-        backOffFactor: 2 // Multiplier of the retry interval to exponentailly increase retry interval
+        backOffFactor: 2.0 // Multiplier of the retry interval to exponentailly increase retry interval
     },
     timeoutMillis: 1000
 
@@ -45,7 +45,7 @@ service<http:Service> famousQuotes bind listener {
               res.setPayload(untaint quote);
           }
           error err => {
-              io:println("Backend invocation has timeout. Setting the default response.");
+              io:println("Backend invocation has failed. Setting the default response.");
               res.setPayload("<<Default Quote >> " + default_quote);
           }
       }

@@ -10,18 +10,17 @@ endpoint http:Listener listener {
     port: 9090
 };
 
-
 endpoint http:Client legacyQuoteEP {
     url: "http://localhost:9095/legacy/quote/circuitbreakermock",
 
     circuitBreaker: {
-        rollingWindow: {
-            timeWindowMillis: 10000,
-            bucketSizeMillis: 2000,
-            requestVolumeThreshold: 0
-        },
+        // rollingWindow: {
+        //     timeWindowMillis: 10000,
+        //     bucketSizeMillis: 2000,
+        //     requestVolumeThreshold: 0
+        // },
         failureThreshold: 0.4,
-        resetTimeMillis: 6000,
+        resetTimeMillis: 10000,
         statusCodes: [500, 501, 502]
     },
     timeoutMillis: 500
@@ -48,7 +47,7 @@ service<http:Service> famousQuotes bind listener {
               res.setPayload(untaint quote);
           }
           error err => {
-              io:println("Backend invocation has timeout. Setting the default response.");
+              io:println("Circuit Breaker breaker is open and invocation of the backend service is prevented.");
               res.setPayload("<<Default Quote >> " + default_quote);
           }
       }
