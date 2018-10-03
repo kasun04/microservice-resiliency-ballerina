@@ -8,11 +8,14 @@ endpoint http:Listener listener {
     port: 9090
 };
 
-
 endpoint http:Client legacyQuoteEP {
-  url: "http://localhost:9095/legacy/quote/timeoutmock",
-  timeoutMillis: 3000
+    url: "http://localhost:9095/legacy/quote/timeoutmock"
+
+    // ToDo : Add timeout 
 };
+
+
+
 
 
 string  default_quote = "The difference between a strong man and a weak one is that the former does not give up after a defeat. - Woodrow Wilson";
